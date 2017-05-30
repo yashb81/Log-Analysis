@@ -7,6 +7,7 @@ from logdb import articles, authors, errors
 
 app = Flask(__name__)
 
+# it contains all the html code to be implemented
 html = '''\
 <!DOCTYPE html>
 <html>
@@ -66,8 +67,6 @@ html = '''\
 
 
 # It formats the input list in desired format
-
-
 def formator(lst):
     some_list = "<table border=1>"
     some_list += "\n".join([
@@ -78,6 +77,7 @@ def formator(lst):
     return some_list
 
 
+# It formats the input list in desired format specially for %
 def formator2(lst):
     some_list = "<table border=1>"
     some_list += "\n".join([
@@ -88,12 +88,14 @@ def formator2(lst):
     return some_list
 
 
+# this function gets called when we open the main page
 @app.route('/', methods=['GET'])
 def Default():
     Main_html = html % (" ", " ")
     return Main_html
 
 
+# this function give the popular articles
 @app.route('/popular_articles', methods=['GET'])
 def article():
     article = articles()
@@ -102,6 +104,7 @@ def article():
     return Main_html
 
 
+# this function give the popular authors
 @app.route('/popular_authors', methods=['GET'])
 def author():
     author = authors()
@@ -111,6 +114,7 @@ def author():
     return Main_html
 
 
+# this function give the error % greater than 1 %
 @app.route('/request_errors', methods=['GET'])
 def error():
     error = errors()
